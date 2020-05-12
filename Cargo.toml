@@ -1,10 +1,10 @@
 [package]
 name = "zoea"
 license = "Apache-2.0"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Fabio Mencoboni <Fabio.Mencoboni@gmail.com>"]
 edition = "2018"
-description = "zoea is the worst rust package you will ever outgrow. It is intended for pythonistas and part-time programmers to have some useful 'shortcuts' to get up and running quickly."
+description = "Zoea is a crate by and for baby Rustaceans. It contains 'easy' buttons for common things like http get requests, key-value database persistence, and Natural Language Processing."
 readme = "README.md"
 include = [ "Cargo.toml", "README.md", "src/*.rs" ]
 
@@ -16,3 +16,4 @@ repository = "https://github.com/FabioMencoboni/zoea"
 seahash = "4.0.0"
 curl = "0.4.29"
 rust-stemmers = "1.2.0"
+sqlite = "0.25.0"
