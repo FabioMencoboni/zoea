@@ -1,6 +1,6 @@
 use std::collections::HashMap; // for dictionaries
 
-pub fn sparsevec_cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
+pub fn cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
     // return the similarity of two sparse vectors as defined by (u*v)/(||u||*||v||)
 
     let mut dot_prod: f32 = 0f32;      // dot product
