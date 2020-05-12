@@ -14,7 +14,6 @@ pub fn cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
         };
         dot_prod = dot_prod + (u_element * v_element);
         u_norm = u_norm + u_element;
-        println!("{}.{}.{}", key, u_element, v_element);
     }
     for (_, v_element) in &v{
         v_norm = v_norm + v_element;

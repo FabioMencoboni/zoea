@@ -1,7 +1,7 @@
 use curl::easy::Easy;
 
 /// EXAMPLE
-/// let url: String = String::from("https://qlsv4412xi.execute-api.us-east-1.amazonaws.com/default/ClientIP");
+/// let url: String = String::from("http://dummy.restapiexample.com/api/v1/employees");
 /// let resp_str: String = get_url(&url);
 /// println!("url={}, response={}", &url, &resp_str);
 pub fn get_url(url: &String) -> String {
