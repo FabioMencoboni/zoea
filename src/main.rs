@@ -35,7 +35,7 @@ fn main() {
 /// let resp_str: String = get_url(&url);
 /// println!("url={}, response={}", &url, &resp_str);
 use curl::easy::Easy;
-fn get_url(url: &String) -> String {
+pub fn get_url(url: &String) -> String {
     let mut dst = Vec::new();
     let mut easy = Easy::new();
     {
@@ -57,7 +57,7 @@ fn get_url(url: &String) -> String {
 /// let h_1 = hash_string(&string_1);
 /// println!("{} and its hash is {}",string_1, h_1);
 use seahash::hash as shash;
-fn hash_string(string: &String) -> u64 {
+pub fn hash_string(string: &String) -> u64 {
     let h: u64 = shash(&string.as_bytes());
     h
 }
@@ -66,7 +66,7 @@ fn hash_string(string: &String) -> u64 {
 
 
 use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
-fn text_tokens(text: &String) -> Vec<String> {
+pub fn text_tokens(text: &String) -> Vec<String> {
     // string goes in, list of tokens comes out
 
     // declare some variables and bring them into context
@@ -93,7 +93,7 @@ fn text_tokens(text: &String) -> Vec<String> {
 }
 
 //use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
-fn text_token_bigrams(text: &String) -> Vec<String> {
+pub fn text_token_bigrams(text: &String) -> Vec<String> {
     // string goes in, tokenized bigrams come out
 
     // declare some variables and bring them into context
@@ -123,7 +123,7 @@ fn text_token_bigrams(text: &String) -> Vec<String> {
 }
 
 use std::collections::HashMap; // for dictionaries
-fn sparsevec_cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
+pub fn sparsevec_cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
     // return the similarity of two sparse vectors as defined by (u*v)/(||u||*||v||)
 
     let mut dot_prod: f32 = 0f32;      // dot product

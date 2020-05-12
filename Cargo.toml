@@ -1,8 +1,10 @@
 [package]
 name = "zoea"
-version = "0.1.0"
+license = "Apache-2.0"
+version = "0.0.1"
 authors = ["Fabio Mencoboni <Fabio.Mencoboni@gmail.com>"]
 edition = "2018"
+description = "zoea is the worst rust package you will ever outgrow. It is intended for pythonistas and part-time programmers to have some useful 'shortcuts' to get up and running quickly."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
