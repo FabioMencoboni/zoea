@@ -36,18 +36,19 @@ fn main() {
 
 The **Zoea** kv_database (key-value) uses a sqlite backend for simple operations.
 
-<pre><code>use zoea::kv_database;
+<pre><code>use zoea::kv_database::{set,get,delete,list_keys};
 fn main() {
     let db = String::from("MyTestDatabase");
     let key = String::from("Key1");
     let value = String::from("Value you want to insert");
 
     // SET the value of key in database db
-    set(&db, &key, &value); 
+    set(&db, &key, &value);
     // GET the value of key in database db
-    let same_value: String = get(&db, &key); 
+    let same_value: String = get(&db, &key);
+    println!("returned value = {}", same_value);
     // LIST keys in database db
-    let keys: Vec<String> = list_keys(&db);
+    let keys = list_keys(&db);
     // GETting an empty key returns an empty string
     let non_key = String::from("KeyThatDoesNotExist");
     let non_value: String = get(&db, &non_key); // returns String::new();
