@@ -8,7 +8,7 @@ use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
 /// println!("Sentence = {}", string_2);
 /// for token in tokens {
 ///     println!("bigram= {}", token);
-pub fn text_tokens(text: &String) -> Vec<String> {
+pub fn text_tokens(text: &str) -> Vec<String> {
     // string goes in, list of tokens comes out
 
     // declare some variables and bring them into context
@@ -41,7 +41,7 @@ pub fn text_tokens(text: &String) -> Vec<String> {
 /// println!("Sentence = {}", string_2);
 /// for gram in bigrams_2 {
 ///    println!("bigram= {}", gram);
-pub fn text_token_bigrams(text: &String) -> Vec<String> {
+pub fn text_token_bigrams(text: &str) -> Vec<String> {
     // string goes in, tokenized bigrams come out
 
     // declare some variables and bring them into context
@@ -70,3 +70,13 @@ pub fn text_token_bigrams(text: &String) -> Vec<String> {
     bigrams
 }
 
+#[test]// use zoea::nlp::text_token_bigrams
+
+
+fn demo() {
+    let sentence = String::from("Today I walked slowly to the garden in San Diego.");
+    let tokenized_bigrams = text_token_bigrams(&sentence);
+    for bigram in tokenized_bigrams {
+        println!("bigram= {}", bigram);
+    }
+}

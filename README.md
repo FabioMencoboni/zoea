@@ -14,18 +14,15 @@ If you have felt this way, **zoea** is for you.
 
 
 
-### Think of zoea as a brittle, hackish "easy" button
+#### Think of zoea as a collection of hackish, somewhat brittle 'easy buttons'
 
-**zoea** does many different things, favoring ergonimics and simplicity over robustness and flexability. That is why this is *the worst crates.io package you will ever outgrow* - It helps you build something  more complex than *Hello World* so you can achieve *"proof of concept"*, inspect the code, and then mature into a more natively Rustacean approach.
-
-
-The only common thread between the various modules in **zoea** is they are all things the author has struggled with or tried to implement. Here are some highlights:
+**zoea** does many different things, favoring ergonimics and simplicity over robustness and flexability. It helps you build something, achieve *"proof of concept"*, and then mature into a more natively Rustacean approach. The only common thread between the various modules in **zoea** is they are all things the author has struggled with or tried to implement. 
 
 ### http requests
 
 <pre><code>use zoea::web;
 fn main() {
-    let url = String::from("http://dummy.restapiexample.com/api/v1/employees");
+    let url = String::from("http://dummy.restapiexample.com/api/v1/employees"); // can be &str or &String
     let resp: String = web::get_url(&url);
     println!("response = {}", resp);
 }
@@ -36,24 +33,24 @@ fn main() {
 
 The **Zoea** kv_database (key-value) uses a sqlite backend for simple operations.
 
-<pre><code>use zoea::kv_database::{set,get,delete,list_keys};
+<pre><code>use zoea::kv_database;
 fn main() {
-    let db = String::from("MyTestDatabase");
-    let key = String::from("Key1");
-    let value = String::from("Value you want to insert");
+    let db = "MyTestDatabase"; // can be &str or &String
+    let key = "Key1"; // can be &str or &String
+    let value = "Value you want to insert"; // can be &str or &String
 
     // SET the value of key in database db
-    set(&db, &key, &value);
+    kv_database::set(&db, &key, &value);
     // GET the value of key in database db
-    let same_value: String = get(&db, &key);
+    let same_value = kv_database::get(&db, &key);
     println!("returned value = {}", same_value);
     // LIST keys in database db
-    let keys = list_keys(&db);
+    let keys = kv_database::list_keys(&db);
     // GETting an empty key returns an empty string
-    let non_key = String::from("KeyThatDoesNotExist");
-    let non_value: String = get(&db, &non_key); // returns String::new();
+    let non_key = "KeyThatDoesNotExist";
+    let non_value = kv_database::get(&db, &non_key); // returns String::new();
     // DELETE a key in database db
-    delete(&db, &key);
+    kv_database::delete(&db, &key);
 }
 </code></pre>
 
@@ -62,7 +59,7 @@ fn main() {
 
 <pre><code>use zoea::nlp;
 fn main() {
-    let sentence = String::from("Today I walked slowly to the garden in San Diego.");
+    let sentence = String::from("Today I walked slowly to the garden in San Diego."); 
     let tokenized_bigrams = nlp::text_token_bigrams(&sentence);
     for bigram in tokenized_bigrams {
         println!("bigram= {}", bigram);
@@ -75,7 +72,7 @@ fn main() {
 
 <pre><code>use zoea::hash;
 fn main() {
-    let mystring = String::from("Here is some string to hash");
+    let mystring = String::from("Here is some string to hash"); // can be &str or &String
     let myhash = hash::hash_string(&mystring);
     println!("the hash is = {}", myhash);
 }
