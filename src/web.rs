@@ -1,9 +1,14 @@
 use curl::easy::Easy;
 
-/// EXAMPLE
+/// ### get_url
+/// This method is intended to be about as simple as a http request can get in Rust
+/// Feed it a URL and it returns the page response as a string
+/// #### EXAMPLE
+/// ```
 /// let url: String = String::from("http://dummy.restapiexample.com/api/v1/employees");
 /// let resp_str: String = get_url(&url);
 /// println!("url={}, response={}", &url, &resp_str);
+/// ```
 pub fn get_url(url: &str) -> String {
     let mut dst = Vec::new();
     let mut easy = Easy::new();

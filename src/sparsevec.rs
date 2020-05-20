@@ -1,5 +1,8 @@
 use std::collections::HashMap; // for dictionaries
 
+/// ### cosine_similarity
+/// This method takes two sparse vectors represented as <u32, f32> HashMaps
+/// It returns their similary as defined by (dot_product)/(norm_a * norm_b)
 pub fn cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
     // return the similarity of two sparse vectors as defined by (u*v)/(||u||*||v||)
 
@@ -20,8 +23,7 @@ pub fn cosine_similarity(u: HashMap<u32, f32>, v: HashMap<u32, f32>) -> f32 {
     }
 
     // calculate and return the similarity
-    let similarity:f32 = 100.0f32*dot_prod/(u_norm * v_norm); // as percentage
-    //println!("u_norm={}, v_norm={}, dot_prod={}", u_norm, v_norm, dot_prod);
+    let similarity:f32 = dot_prod/(u_norm * v_norm); // as percentage
     similarity
 
 }

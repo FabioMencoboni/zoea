@@ -1,13 +1,22 @@
 
 use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
 
-
-/// EXAMPLE
+/// ### text_tokens
+/// This method takes a slice of a string and produces a vector of stemmed words
+/// Here is what happens under the hood:
+/// 1. "funky" non-alphanumeric characters are removed
+/// 2. everything is converted to lower case
+/// 3. the string slice is split into words (split on whitespace)
+/// 4. the "stem" of each word is taken using rust_stemmers
+/// 
+/// #### EXAMPLE:
+/// ```
 /// let string_2 = String::from("I walked to San Diego slowly today!");
 /// let tokens = text_tokens(&string_2);
 /// println!("Sentence = {}", string_2);
 /// for token in tokens {
 ///     println!("bigram= {}", token);
+/// ```
 pub fn text_tokens(text: &str) -> Vec<String> {
     // string goes in, list of tokens comes out
 
@@ -34,13 +43,24 @@ pub fn text_tokens(text: &str) -> Vec<String> {
     tokens
 }
 
-
-/// EXAMPLE
+/// 
+/// ### text_token_bigrams
+/// This method takes a slice of a string and produces a vector of bigrams as strings.
+/// Here is what happens under the hood:
+/// 1. "funky" non-alphanumeric characters are removed
+/// 2. everything is converted to lower case
+/// 3. the string slice is split into words (split on whitespace)
+/// 4. the "stem" of each word is taken using rust_stemmers
+/// 5. a window of two "stems" moves along the list producing bigrams
+/// 
+/// #### EXAMPLE:
+/// ```
 /// let string_2 = String::from("I walked to San Diego slowly today!");
 /// let bigrams_2 = text_token_bigrams(&string_2);
 /// println!("Sentence = {}", string_2);
 /// for gram in bigrams_2 {
 ///    println!("bigram= {}", gram);
+/// ```
 pub fn text_token_bigrams(text: &str) -> Vec<String> {
     // string goes in, tokenized bigrams come out
 
