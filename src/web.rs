@@ -5,6 +5,7 @@ use curl::easy::Easy;
 /// Feed it a URL and it returns the page response as a string
 /// #### EXAMPLE
 /// ```
+/// use zoea::web::get_url;
 /// let url: String = String::from("http://dummy.restapiexample.com/api/v1/employees");
 /// let resp_str: String = get_url(&url);
 /// println!("url={}, response={}", &url, &resp_str);

@@ -11,11 +11,13 @@ use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
 /// 
 /// #### EXAMPLE:
 /// ```
+/// use zoea::nlp::text_tokens;
 /// let string_2 = String::from("I walked to San Diego slowly today!");
 /// let tokens = text_tokens(&string_2);
 /// println!("Sentence = {}", string_2);
 /// for token in tokens {
-///     println!("bigram= {}", token);
+///     println!("bigram= {}", token)
+/// }
 /// ```
 pub fn text_tokens(text: &str) -> Vec<String> {
     // string goes in, list of tokens comes out
@@ -55,11 +57,13 @@ pub fn text_tokens(text: &str) -> Vec<String> {
 /// 
 /// #### EXAMPLE:
 /// ```
+/// use zoea::nlp::text_token_bigrams;
 /// let string_2 = String::from("I walked to San Diego slowly today!");
 /// let bigrams_2 = text_token_bigrams(&string_2);
 /// println!("Sentence = {}", string_2);
 /// for gram in bigrams_2 {
-///    println!("bigram= {}", gram);
+///    println!("bigram= {}", gram)
+/// }
 /// ```
 pub fn text_token_bigrams(text: &str) -> Vec<String> {
     // string goes in, tokenized bigrams come out

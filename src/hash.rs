@@ -2,6 +2,7 @@ use seahash::hash as shash;
 
 /// ```
 /// // EXAMPLE:
+/// use zoea::hash::hash_string;
 /// let string_1 = String::from("Here is a string you want to hash.");
 /// let h_1 = hash_string(&string_1);
 /// println!("{} and its hash is {}",string_1, h_1);
