@@ -20,20 +20,22 @@ If you have felt this way, **zoea** is for you.
 
 ### http requests
 
-<pre><code>use zoea::web;
+```rust
+use zoea::web;
 fn main() {
     let url = String::from("http://dummy.restapiexample.com/api/v1/employees"); // can be &str or &String
     let resp: String = web::get_url(&url);
     println!("response = {}", resp);
 }
-</code></pre>
+```
 
 
 ### key-value database persistence
 
 The **Zoea** kv_database (key-value) uses a sqlite backend for simple operations.
 
-<pre><code>use zoea::kv_database;
+```rust
+use zoea::kv_database;
 fn main() {
     let db = "MyTestDatabase"; // can be &str or &String
     let key = "Key1"; // can be &str or &String
@@ -52,12 +54,13 @@ fn main() {
     // DELETE a key in database db
     kv_database::delete(&db, &key);
 }
-</code></pre>
+```
 
 
 ### Natural Language Processing (NLP)
 
-<pre><code>use zoea::nlp;
+```rust
+use zoea::nlp;
 fn main() {
     let sentence = String::from("Today I walked slowly to the garden in San Diego."); 
     let tokenized_bigrams = nlp::text_token_bigrams(&sentence);
@@ -65,18 +68,19 @@ fn main() {
         println!("bigram= {}", bigram);
     }
 }
-</code></pre>
+```
 
 
 ### Hashing
 
-<pre><code>use zoea::hash;
+```rust
+use zoea::hash;
 fn main() {
     let mystring = String::from("Here is some string to hash"); // can be &str or &String
     let myhash = hash::hash_string(&mystring);
     println!("the hash is = {}", myhash);
 }
-</code></pre>
+```
 
 
 
