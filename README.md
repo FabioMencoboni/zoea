@@ -67,6 +67,12 @@ fn main() {
 }
 </code></pre>
 
+##### New for v0.0.8+ : porter stems 
+
+<pre><code>use zoea::nlp;
+let port_stems = nlp::porter_stems("Totally dude!");
+assert_eq!(port_stems[0], "total");
+</code></pre>
 
 ### Hashing
 

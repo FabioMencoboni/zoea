@@ -1,5 +1,6 @@
 
 use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
+use porter_stemmer::stem as pstem;
 
 /// ### text_tokens
 /// This method takes a slice of a string and produces a vector of stemmed words
@@ -19,6 +20,37 @@ use rust_stemmers::{Algorithm, Stemmer}; // for stemming single words
 ///     println!("bigram= {}", token)
 /// }
 /// ```
+
+/// ### porter_stems
+/// Return a Vec<String> with the porter stems of words in a &str
+/// 
+/// #### EXAMPLE:
+/// ```
+/// use zoea::nlp;
+/// let port_stems = nlp::porter_stems("Totally dude!");
+/// assert_eq!(port_stems[0], "total");
+/// ```
+pub fn porter_stems(text: &str) -> Vec<String> {
+    // return the porter stems of each word
+    let mut token: String;
+    let mut tokens =  Vec::new();
+
+    // convert text to lower case and iterate over words
+    let text_clean = text.replace(&['(', ')', ',', '\"', '.', ';', ':', '\'','!','?'][..], "");
+    let text_lower = text_clean.to_lowercase();
+    let words = text_lower.split_whitespace();
+    for gram in words  {
+
+        // find the word stem
+        token = pstem(&gram); 
+        
+        // append this token to tne reesults
+        tokens.push(token);     
+    }
+    // return the vector of bigrams
+    tokens
+
+}
 pub fn text_tokens(text: &str) -> Vec<String> {
     // string goes in, list of tokens comes out
 
@@ -95,12 +127,11 @@ pub fn text_token_bigrams(text: &str) -> Vec<String> {
 }
 
 #[test]// use zoea::nlp::text_token_bigrams
-
-
 fn demo() {
     let sentence = String::from("Today I walked slowly to the garden in San Diego.");
     let tokenized_bigrams = text_token_bigrams(&sentence);
-    for bigram in tokenized_bigrams {
-        println!("bigram= {}", bigram);
-    }
+    assert_eq!(tokenized_bigrams[0], "!NewDoc today".to_string());
+    let port_stems = porter_stems("Totally dude!");
+    assert_eq!(port_stems[0], "total");
+
 }
