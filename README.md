@@ -18,7 +18,7 @@ If you have felt this way, **zoea** is for you.
 
 **zoea** does many different things, favoring ergonimics and simplicity over robustness and flexability. It helps you build something, achieve *"proof of concept"*, and then mature into a more natively Rustacean approach. The only common thread between the various modules in **zoea** is they are all things the author has struggled with or tried to implement. 
 
-### http requests
+### easy http requests
 
 <pre><code>use zoea::web;
 fn main() {
@@ -26,6 +26,23 @@ fn main() {
     let resp: String = web::get_url(&url);
     println!("response = {}", resp);
 }
+</code></pre>
+
+### easy matrix operations
+
+The ::mtx module of **Zoea** adds some syntactic sugar around *nalgebra* to make it easy to create matrices of variable sizes and types. Matrix multiplication and linear algebra made easy.
+
+<pre><code>use zoea::mtx;
+// Create a 3x1000 f32 random matrix with values between -1 and 1
+// Create a 1000x4 f32 random matrix with values between 5 and 25
+let a = mtx::new_f32_random(3, 1000, -1f32, 1f32); //type = mtx::DMatrix \< f32>
+let b = mtx::new_f32_random(1000, 4, 5f32, 25f32); // type = mtx::DMatrix \< f32>
+// multiply a and b and print the result
+let c = a * b;
+println!("{}", c);
+
+// take one of the values and assign it to a float
+let select_element: f32 = c[(1,3)];
 </code></pre>
 
 
