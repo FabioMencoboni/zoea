@@ -1,7 +1,7 @@
 [package]
 name = "zoea"
 license = "Apache-2.0"
-version = "0.0.9"
+version = "0.2.0"
 authors = ["Fabio Mencoboni <Fabio.Mencoboni@gmail.com>"]
 edition = "2018"
 description = "Zoea is a crate by and for baby Rustaceans. It contains 'easy' buttons for common things like http get requests, key-value database persistence, and Natural Language Processing."
@@ -14,7 +14,8 @@ repository = "https://github.com/FabioMencoboni/zoea"
 
 [dependencies]
 seahash = "4.0.0"
-curl = "0.4.29"
+#curl = "0.4.29"
+ureq = "2.1.1"
 rust-stemmers = "1.2.0"
 porter-stemmer = "0.1.2"
 sqlite = "0.25.0"

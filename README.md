@@ -22,7 +22,7 @@ If you have felt this way, **zoea** is for you.
 
 <pre><code>use zoea::web;
 fn main() {
-    let url = String::from("http://dummy.restapiexample.com/api/v1/employees"); // can be &str or &String
+    let url = String::from("https://jsonplaceholder.typicode.com/posts/1"); // can be &str or &String
     let resp: String = web::get_url(&url);
     println!("response = {}", resp);
 }
@@ -100,6 +100,5 @@ fn main() {
     println!("the hash is = {}", myhash);
 }
 </code></pre>
-
 
 
