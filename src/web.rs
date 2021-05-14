@@ -1,4 +1,5 @@
 //use curl::easy::Easy;
+use std::fmt;
 use ureq; // minimal library for simple, blocking http GET/POST requests
 
 /// ### get_url
@@ -8,39 +9,42 @@ use ureq; // minimal library for simple, blocking http GET/POST requests
 /// ```
 /// use zoea::web::get_url;
 /// let url: String = String::from("http://dummy.restapiexample.com/api/v1/employees");
-/// let resp_str: String = get_url(&url);
+/// let resp_str: String = get_url(&url).unwrap();
 /// println!("url={}, response={}", &url, &resp_str);
 /// ```
-/*pub fn get_url(url: &str) -> String {
-    let mut dst = Vec::new();
-    let mut easy = Easy::new();
-    {
-    easy.url(&url).unwrap();
-    let mut transfer = easy.transfer();
-    transfer.write_function(|data| {
-        dst.extend_from_slice(data);
-        Ok(data.len())
-    }).unwrap();
-    transfer.perform().unwrap();
-    }
-    let resp_str = String::from_utf8(dst).unwrap();
-    // return the response
-    resp_str
-}*/
 
-pub fn get_url(url: &str) -> String {
+#[derive(Debug, Clone)]
+pub struct ErrorHTTP {
+    msg: String,
+}
+
+impl fmt::Display for ErrorHTTP {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.msg)
+    }
+}
+
+
+
+pub fn get_url(url: &str) -> Result<String, ErrorHTTP> {
     let req = ureq::get(url);//::get("https://jsonplaceholder.typicode.com/posts")
-    let s: String = req.call().unwrap().into_string().unwrap();//.into_string().unwrap();//resp.unwrap().into_string().unwrap();
-    println!("{}", s);
-    s
+    match req.call() { // can ureq understand the http request?
+        Ok(resp) => { 
+            match resp.into_string() { // can the response be converted to a string?
+                Ok(string) => return Ok(string),
+                Err(_) => return Err(ErrorHTTP{msg: String::from("could not parse response into string")}),
+            }
+        },
+        Err(_) => return Err(ErrorHTTP{msg: String::from("unable to make this http request")}),
+    };
 }
 
 #[test]
 fn str_vs_string() {
     // ensure you spoort &str and &String
     let url: String = String::from("https://jsonplaceholder.typicode.com/posts/1");
-    let v1 = get_url(&"https://jsonplaceholder.typicode.com/posts/1");
-    let v2 = get_url(&url);
+    let v1 = get_url(&"https://jsonplaceholder.typicode.com/posts/1").unwrap();
+    let v2 = get_url(&url).unwrap();
     assert_eq!(v1, v2);
     assert_eq!(v1.len() > 20, true); // ensure you actually got some text
 }

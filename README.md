@@ -18,15 +18,22 @@ If you have felt this way, **zoea** is for you.
 
 **zoea** does many different things, favoring ergonimics and simplicity over robustness and flexability. It helps you build something, achieve *"proof of concept"*, and then mature into a more natively Rustacean approach. The only common thread between the various modules in **zoea** is they are all things the author has struggled with or tried to implement. 
 
+
+
+### New in v0.1.0
+
+The get_url functionality has been changed under the hood to use ureq instead of curl. This is a more pure-rust approach vs heritage C code. The method has also had an error wrapper applied.
+
 ### easy http requests
 
-<pre><code>use zoea::web;
+<pre><code>use zoea::web::get_url;
 fn main() {
-    let url = String::from("https://jsonplaceholder.typicode.com/posts/1"); // can be &str or &String
-    let resp: String = web::get_url(&url);
-    println!("response = {}", resp);
+    let url: String = String::from("http://dummy.restapiexample.com/api/v1/employees"); // can be &str or &String
+    let resp_str: String = get_url(&url).unwrap();
+    println!("url={}, response={}", &url, &resp_str);
 }
 </code></pre>
+
 
 ### easy matrix operations
 
@@ -40,7 +47,6 @@ let b = mtx::new_f32_random(1000, 4, 5f32, 25f32); // type = mtx::DMatrix \< f32
 // multiply a and b and print the result
 let c = a * b;
 println!("{}", c);
-
 // take one of the values and assign it to a float
 let select_element: f32 = c[(1,3)];
 </code></pre>
